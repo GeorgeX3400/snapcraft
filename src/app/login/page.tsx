@@ -11,11 +11,25 @@ export default function Login() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error, data } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       alert(error.message);
-    } else {
-      router.push("/dashboard");
+    } 
+    if (data.user) {
+      // Check if preferences exist
+      const { data: preferences, error: prefsError } = await supabase
+        .from("preferences")
+        .select("user_id")
+        .eq("user_id", data.user.id)
+        .single();
+  
+      if (prefsError || !preferences) {
+        // No preferences found, redirect to /preferences
+        router.push("/preferences");
+      } else {
+        // Preferences exist, redirect to /dashboard
+        router.push("/dashboard");
+      }
     }
   };
 
