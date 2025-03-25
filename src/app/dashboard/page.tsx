@@ -65,10 +65,11 @@ export default function Dashboard() {
 
   return (
       <div className="flex flex-col items-center  lg:text-left px-2 py-12 bg-white">
-        {/* Logo Placeholder */}
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">SnapCraft</h2>
-        </div>
+        <div className="mb-4">
+    <a href="/issues" className="text-blue-600 hover:underline">
+      Report a Bug
+    </a>
+  </div>
         {/* Personalized Greeting */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
           Welcome, {name || "User"}!
