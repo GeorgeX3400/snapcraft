@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
-import Link from "next/link";
 
 export default function Preferences() {
   const [step, setStep] = useState(1);
